@@ -2,7 +2,7 @@ import streamlit
 import pandas as pd
 import requests
 from urllib.error import URLError
-import PyPDF3
+import PyPDF2
 import pandas as pd
 import numpy as np
 
@@ -10,68 +10,48 @@ streamlit.title('Birkie Split Finder')
 streamlit.header('Find Your Splits')
 
 # creating a pdf file object
-reader = PyPDF3.PdfReader("C:\ResultListsOverallResults.pdf")
-#print number of pages in pdf
-print(len(reader.pages))
+reader = PyPDF2.PdfReader("C:\ResultListsOverallResults.pdf")
 # print the text of the first page
 print(reader.pages[0].extract_text())
 #create dataframe of first page of pdf data
-list = reader.pages[0].extract_text()
-list
+page = reader.pages[0].extract_text()
 #split the list by \n first
-cutlist = list.split('\n')
-cutlist
+cutlist = page.split('\n')
 cutlist.remove('Birkie Skate')
 table1 = pd.DataFrame(cutlist)
-table1.info()
-table1
 table2 =table1[0].str.split(",", n=1, expand=True)
-table2
 t3 = table2[0].str.split('', n=1, expand=True)
-t3
 t4 = t3[1].str.split(' ')
-t4
 bibnum = pd.DataFrame(t4)
-bibnum.info()
-bibnum
+
 #seperate values in bibnum table into a column of their own
 bib = bibnum[1].apply(pd.Series)
-bib
+
 #name columns
 bib.columns = ['OvrSexDiv', 'AgeGrp', 'BibNum', 'LName', 4]
-bib
+
 #clean up first 6 rows
 topsix = bib.head(7)
-topsix
 topsix["AgeGrp"] = ['M', 'M', 'M', 'M', 'M', 'M', 'M']
 topsix["BibNum"] = ["BibName",'2','1','10','7','6','219']
 topsix["LName"] = ['City', 'Norris', 'Agnellet', 'Izquierdo-Bernier', "O'Harra", 'Kornfield', 'Winker']
-topsix
-bib
+
 #merge dataframes back together
 frames = [bib, topsix]
 results = pd.concat(frames)
-results
+
 #remove dups from concat 
 result_df = results.drop_duplicates()
-result_df
+
 #remove rows with insignificant data
 results_clean = result_df.drop(0)
 results_clean = results_clean.drop(47)
 results_clean = results_clean.drop(46)
-results_clean
+
 #drop extra column
 final_results = results_clean.drop(4, axis=1)
-final_results
-
-#convert BibNum column to a list of values
-lists = final_results['BibNum'].values.tolist()
-lists
-arr = np.array(lists)
-arr
 
 #extract finish sector time from the race result url
-
 import urllib.request
 import json
 import pandas as pd
