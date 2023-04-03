@@ -2,7 +2,7 @@ import streamlit
 import pandas as pd
 import requests
 from urllib.error import URLError
-import PyPDF2
+import PyPDF3
 import pandas as pd
 import numpy as np
 
@@ -10,7 +10,7 @@ streamlit.title('Birkie Split Finder')
 streamlit.header('Find Your Splits')
 
 # creating a pdf file object
-reader = PyPDF2.PdfReader("C:\ResultListsOverallResults.pdf")
+reader = PyPDF3.PdfReader("C:\ResultListsOverallResults.pdf")
 #print number of pages in pdf
 print(len(reader.pages))
 # print the text of the first page
