@@ -1,13 +1,12 @@
 import streamlit
 import pandas as pd
 import requests
-import snowflake.connector
 from urllib.error import URLError
 
 streamlit.title('Birkie Split Finder')
 streamlit.text('Lake')
 
-streamlit.title('Find Your Lake Split')
+streamlit.title('Find Your Splits')
 import PyPDF2
 import pandas as pd
 import numpy as np
