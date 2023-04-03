@@ -1,9 +1,8 @@
-pip install PyPDF2
 import streamlit
 import pandas as pd
 import requests
 from urllib.error import URLError
-import PyPDF2
+from PyPDF2 import PdfFileReader
 import pandas as pd
 import numpy as np
 
