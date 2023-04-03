@@ -2,14 +2,12 @@ import streamlit
 import pandas as pd
 import requests
 from urllib.error import URLError
-
-streamlit.title('Birkie Split Finder')
-streamlit.text('Lake')
-
-streamlit.title('Find Your Splits')
 import PyPDF2
 import pandas as pd
 import numpy as np
+
+streamlit.title('Birkie Split Finder')
+streamlit.header('Find Your Splits')
 
 # creating a pdf file object
 reader = PyPDF2.PdfReader("C:\ResultListsOverallResults.pdf")
