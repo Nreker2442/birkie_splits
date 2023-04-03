@@ -1,3 +1,4 @@
+pip install PyPDF2
 import streamlit
 import pandas as pd
 import requests
