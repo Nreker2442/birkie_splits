@@ -2,7 +2,7 @@ import streamlit
 import pandas as pd
 import requests
 from urllib.error import URLError
-from PyPDF2 import PdfFileReader
+from PyPDF2 import PdfReader
 import pandas as pd
 import numpy as np
 
